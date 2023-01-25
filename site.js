@@ -3,7 +3,7 @@ let popupRef = document.querySelector(".popup");
 let newgameBtn = document.getElementById("new-game");
 let restartBtn = document.getElementById("restart");
 let msgRef = document.getElementById("message");
-//Winning Pattern Array
+//Alle win opties
 let winningPattern = [
   [0, 1, 2],
   [0, 3, 6],
@@ -14,28 +14,28 @@ let winningPattern = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-//Player 'X' plays first
+//X mag eerst
 let xTurn = true;
 let count = 0;
 
-//Disable All Buttons
+//Alle buttons uitzetten
 const disableButtons = () => {
   btnRef.forEach((element) => (element.disabled = true));
-  //enable popup
+  //Popup
   popupRef.classList.remove("hide");
 };
 
-//Enable all buttons (For New Game and Restart)
+//alle buttons
 const enableButtons = () => {
   btnRef.forEach((element) => {
     element.innerText = "";
     element.disabled = false;
   });
-  //disable popup
+  //popup uit
   popupRef.classList.add("hide");
 };
 
-//This function is executed when a player wins
+//win
 const winFunction = (letter) => {
   disableButtons();
   if (letter == "X") {
@@ -45,13 +45,13 @@ const winFunction = (letter) => {
   }
 };
 
-//Function for draw
+//gelijkspel
 const drawFunction = () => {
   disableButtons();
   msgRef.innerHTML = "&#x1F60E; <br> It's a Draw";
 };
 
-//New Game
+//nieuw spel
 newgameBtn.addEventListener("click", () => {
   count = 0;
   enableButtons();
@@ -61,9 +61,9 @@ restartBtn.addEventListener("click", () => {
   enableButtons();
 });
 
-//Win Logic
+
 const winChecker = () => {
-  //Loop through all win patterns
+  //loop
   for (let i of winningPattern) {
     let [element1, element2, element3] = [
       btnRef[i[0]].innerText,
@@ -71,38 +71,41 @@ const winChecker = () => {
       btnRef[i[2]].innerText,
     ];
     //Check if elements are filled
-    //If 3 empty elements are same and would give win as would
+    //als 3 zelfde win
     if (element1 != "" && (element2 != "") & (element3 != "")) {
       if (element1 == element2 && element2 == element3) {
-        //If all 3 buttons have same values then pass the value to winFunction
+        
         winFunction(element1);
       }
     }
   }
 };
 
-//Display X/O on click
+//icoontjes op het scherm
 btnRef.forEach((element) => {
   element.addEventListener("click", () => {
     if (xTurn) {
       xTurn = false;
-      //Display X
+      //X
       element.innerText = "X";
       element.disabled = true;
     } else {
       xTurn = true;
-      //Display Y
+      //O
       element.innerText = "O";
       element.disabled = true;
     }
-    //Increment count on each click
+    
     count += 1;
     if (count == 9) {
       drawFunction();
     }
-    //Check for win on every click
+    //winchecker
     winChecker();
   });
 });
-//Enable Buttons and disable popup on page load
-window.onload = enableButtons;
+//popups en buttons
+window.onload = enableButtons
+
+
+   

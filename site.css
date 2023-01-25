@@ -74,3 +74,20 @@
   .popup.hide {
     display: none;
   }
+
+  .settings {
+   font-size: 40px;
+   background: linear-gradient(135deg, #8052ec, #d161ff);
+   position: relative;
+   top: 10px;
+   left: 1460px;
+   cursor:pointer;
+  }
+  img {
+    height: 100px;
+    position: relative;
+    top: -45px;
+    left: 10px;
+
+  }
+  
